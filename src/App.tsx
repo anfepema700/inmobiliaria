@@ -1,13 +1,13 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import AdminProperties from "./pages/AdminOwners/AdminOwners";
+import { Image } from "primereact/image";
+import linealPicture from "./assets/logo_inmobiliaria.png";
 
 function App() {
   return (
-    <>
-      <p>Estoy en app</p>
-    </>
+    <div className="text-center">
+      <h1>Inmobiliaria lineal</h1>
+      <Image src={linealPicture} />
+    </div>
   );
 }
 
