@@ -6,13 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 import "/node_modules/primeflex/primeflex.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AdminProperties from "./pages/AdminProperties/AdminProperties";
+import AdminProperties from "./pages/AdminOwners/AdminOwners";
 import MainMenu from "./components/MainMenu/MainMenu";
 import AdminProperty from "./pages/AdminProperty/AdminProperty";
 import "primeicons/primeicons.css";
 import AdminTenant from "./pages/AdminTenant/AdminTenant";
 import AdminCoDebtor from "./pages/AdminCoDebtor/AdminCoDebtor";
 import AdminContract from "./pages/AdminContract/AdminContract";
+import BillingTenant from "./pages/BillingTenant/BillingTenant";
+import BillingOwner from "./pages/BillingOwner/BillingOwner";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
   {
     path: "/admin-contract",
     element: <AdminContract />,
+  },
+  {
+    path: "/billing-tenant",
+    element: <BillingTenant />,
+  },
+  {
+    path: "/billing-owner",
+    element: <BillingOwner />,
   },
 ]);
 

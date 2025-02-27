@@ -1,4 +1,10 @@
-import { Control, FieldErrors, FieldValues, Path } from "react-hook-form";
+import {
+  Control,
+  FieldErrors,
+  FieldValues,
+  Path,
+  PathValue,
+} from "react-hook-form";
 
 export interface DropdownData {
   name: string;
@@ -15,4 +21,7 @@ export interface DropdownProperties<T extends FieldValues> {
   autoFocusDropdown?: boolean;
   filterDropdown?: boolean;
   emptyFilterMessage?: string;
+  showClear?: boolean;
+  defaultValue?: PathValue<T, Path<T>> | undefined;
+  disabledDropdwown?: boolean;
 }

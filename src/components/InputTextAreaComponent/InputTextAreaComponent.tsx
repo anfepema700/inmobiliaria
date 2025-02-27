@@ -7,21 +7,20 @@ import {
 } from "react-hook-form";
 import { classNames } from "primereact/utils";
 import { useEffect, useState } from "react";
-
 import { KeyFilterType } from "primereact/keyfilter";
 import { InputTextarea } from "primereact/inputtextarea";
 import { formValidation } from "../../utilities/FormValidations";
 
 interface Props<T extends FieldValues> {
   showCountCharaters?: string;
-  rowsInputText?: number;
-  colsInputText?: number;
-  labelInputText: string;
-  nameInputText: Path<T>;
-  requiredInputText: string | boolean;
-  controlInputText: Control<T>;
-  errorsInputText: FieldErrors;
-  iconInputText?: string;
+  rowsInputTextArea?: number;
+  colsInputTextArea?: number;
+  labelInputTextArea: string;
+  nameInputTextArea: Path<T>;
+  requiredInputTextArea: string | boolean;
+  controlInputTextArea: Control<T>;
+  errorsInputTextArea: FieldErrors;
+  iconInputTextArea?: string;
   autoFocus?: boolean;
   maxLengthValue?: number;
   minLengthValue?: number;
@@ -44,14 +43,14 @@ interface Rules {
 
 function InputTextAreaComponent<T extends FieldValues>({
   showCountCharaters = "",
-  rowsInputText,
-  colsInputText,
-  labelInputText,
-  nameInputText,
-  requiredInputText,
-  controlInputText,
-  errorsInputText,
-  iconInputText,
+  rowsInputTextArea: rowsInputText,
+  colsInputTextArea: colsInputText,
+  labelInputTextArea: labelInputText,
+  nameInputTextArea: nameInputText,
+  requiredInputTextArea: requiredInputText,
+  controlInputTextArea: controlInputText,
+  errorsInputTextArea: errorsInputText,
+  iconInputTextArea: iconInputText,
   autoFocus = false,
   maxLengthValue,
   minLengthValue,

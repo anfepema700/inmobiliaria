@@ -3,6 +3,7 @@ import { Controller, FieldValues } from "react-hook-form";
 import { classNames } from "primereact/utils";
 import { DropdownProperties } from "./models/dropdown.model";
 import { formValidation } from "../../utilities/FormValidations";
+import { useState } from "react";
 
 function DropdownComponent<T extends FieldValues>({
   label,
@@ -15,7 +16,11 @@ function DropdownComponent<T extends FieldValues>({
   data,
   filterDropdown = false,
   emptyFilterMessage,
+  showClear,
+
+  disabledDropdwown,
 }: DropdownProperties<T>): JSX.Element {
+  const [showClearValue, setShowClearValue] = useState(false);
   return (
     <div className="field p-fluid">
       <label
@@ -36,16 +41,24 @@ function DropdownComponent<T extends FieldValues>({
             value={field.value}
             autoFocus={autoFocusDropdown}
             optionLabel="name"
+            optionValue="code"
             placeholder={placeholderDropdown}
             options={data}
             focusInputRef={field.ref}
             onChange={(e) => {
               field.onChange(e.value);
+              if (e.value) {
+                setShowClearValue(true);
+              } else {
+                setShowClearValue(false);
+              }
             }}
             className={classNames({ "p-invalid": fieldState.error })}
-            emptyMessage="No hay información, contacta MDA"
+            emptyMessage="No hay información"
             emptyFilterMessage={emptyFilterMessage}
             filter={filterDropdown}
+            showClear={showClear ? showClearValue : false}
+            disabled={disabledDropdwown}
           />
         )}
       />

@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import AdminProperties from "./pages/AdminProperties/AdminProperties";
+import AdminProperties from "./pages/AdminOwners/AdminOwners";
 
 function App() {
   return (

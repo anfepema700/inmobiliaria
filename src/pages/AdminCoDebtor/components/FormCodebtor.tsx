@@ -1,14 +1,26 @@
 import { useForm } from "react-hook-form";
-import { CodebtorForm } from "../model/codebtor.model";
+import { ApiCodebtor, CodebtorForm } from "../model/codebtor.model";
 import { Button } from "primereact/button";
 import InputTextBaseComponent from "../../../components/InputTextBaseComponent/InputTextBaseComponent";
+import { createCodebtorService } from "../services/codebtor.service";
+import { CustomMessageProps } from "../../../components/MessageComponent/models/messageComponent.model";
+import { useEffect } from "react";
 
-function FormCodebtor(): JSX.Element {
+interface FormCodebtorProps {
+  getAllCodebtor: () => void;
+  setApiResponse: (params: CustomMessageProps) => void;
+  coDebtorRow?: ApiCodebtor;
+}
+function FormCodebtor({
+  getAllCodebtor,
+  setApiResponse,
+  coDebtorRow,
+}: FormCodebtorProps): JSX.Element {
   const defaultValues: CodebtorForm = {
-    document: "",
-    name: "",
-    phone: "",
-    email: "",
+    document: coDebtorRow?.document ?? "",
+    name: coDebtorRow?.name ?? "",
+    phone: coDebtorRow?.phone ?? "",
+    email: coDebtorRow?.email ?? "",
   };
   const {
     reset,
@@ -17,9 +29,38 @@ function FormCodebtor(): JSX.Element {
     handleSubmit,
   } = useForm<CodebtorForm>({ defaultValues, mode: "onChange" });
 
-  const onSubmit = (data: CodebtorForm) => {
-    console.log(data);
+  const onSubmit = async (data: CodebtorForm) => {
+    try {
+      const createCodebtor = await createCodebtorService(data);
+      if (createCodebtor) {
+        getAllCodebtor();
+        reset();
+        setApiResponse({
+          severity: "success",
+          message: "Codeudor creado con éxito",
+        });
+      }
+    } catch (error) {
+      setApiResponse({
+        severity: "error",
+        message: "Error al crear codeudor",
+      });
+    } finally {
+      reset({
+        document: "",
+        name: "",
+        phone: "",
+        email: "",
+      });
+    }
   };
+
+  useEffect(() => {
+    if (coDebtorRow) {
+      reset(coDebtorRow);
+    }
+  }, [coDebtorRow]);
+
   return (
     <form
       className="
@@ -32,7 +73,7 @@ function FormCodebtor(): JSX.Element {
           errorsInputTextBaseComponent={errors}
           labelInputTextBaseComponent="Documento:"
           nameInputTextBaseComponent="document"
-          requiredInputTextBaseComponent
+          requiredInputTextBaseComponent="Documento requerido"
           autoFocus
         />
       </div>
@@ -60,11 +101,11 @@ function FormCodebtor(): JSX.Element {
           errorsInputTextBaseComponent={errors}
           labelInputTextBaseComponent="Correo:"
           nameInputTextBaseComponent="email"
-          requiredInputTextBaseComponent
+          requiredInputTextBaseComponent="Correo requerido"
         />
       </div>
-      <div className="flex align-content-center flex-wrap col-3 md:col-2 sm:col-12">
-        <Button label="Guardar" className="" />
+      <div className="col-3 md:col-2 sm:col-12">
+        <Button label="Guardar" className="col-12" />
       </div>
     </form>
   );

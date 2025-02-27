@@ -30,6 +30,7 @@ interface Props<T extends FieldValues> {
   defaultValue?: string;
   setValue?: any;
   placeholderValue?: string;
+  disableInput?: boolean;
 }
 interface Rules {
   required: boolean | string;
@@ -58,6 +59,7 @@ function InputTextBaseComponent<T extends FieldValues>({
   defaultValue,
   setValue,
   placeholderValue,
+  disableInput,
 }: Props<T>): JSX.Element {
   const [rules, setRules] = useState({});
   useEffect(() => {
@@ -117,6 +119,7 @@ function InputTextBaseComponent<T extends FieldValues>({
                 readOnly={readonly}
                 defaultValue={defaultValue}
                 placeholder={placeholderValue}
+                disabled={disableInput}
               />
             )}
           />

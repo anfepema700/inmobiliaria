@@ -25,7 +25,7 @@ interface Properties<T extends FieldValues> {
   typeTime?: boolean;
 }
 
-function InputDateComponent<T extends FieldValues>({
+function InputDate<T extends FieldValues>({
   labelDateName,
   nameDate,
   maxDateValue,
@@ -85,7 +85,7 @@ function InputDateComponent<T extends FieldValues>({
   });
 
   return (
-    <div className="field">
+    <div className="field p-fluid">
       <label
         htmlFor={nameDate}
         className={classNames({
@@ -122,4 +122,4 @@ function InputDateComponent<T extends FieldValues>({
   );
 }
 
-export default InputDateComponent;
+export default InputDate;
